@@ -56,11 +56,6 @@
         .project-card:hover .project-button {
             background-color: #2563eb; /* Darker blue on hover */
         }
-     
-
-    
-
-
 
     </style>
 </head>
@@ -81,7 +76,7 @@
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">About</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Education</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Work-Exp</a>
-                <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Project</a>
+                <a href="#projects" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Project</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Enrichment</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">POR</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Contacts</a>
@@ -112,7 +107,7 @@
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">About</a>
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Education</a>
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Work-Exp</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Project</a>
+            <a href="#projects" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Project</a>
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Enrichment</a>
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">POR</a>
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Contacts</a>
@@ -123,8 +118,9 @@
         </div>
     </nav>
 
-    <!-- Projects Section -->
+    <!-- Main Content -->
     <main class="container mx-auto py-8">
+        <!-- Projects Section -->
         <section id="projects" class="py-12">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-6">Projects</h2>
@@ -138,51 +134,32 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded project-button">View Details</button>
                         </div>
                     </div>
-                     <!-- Repeat similar blocks for other projects -->
-                     <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
-                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
-                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
-                        </div>
-                    </div>
+                    <!-- Add more project cards here -->
+                </div>
+            </div>
+        </section>
+    </main>
 
-                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
-                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
-                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
-                        </div>
-                    </div>
+    <!-- Optional Modal for Project Details -->
+    <div id="modal1" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg w-1/2">
+            <h3 class="text-2xl font-semibold mb-4">Project 1 Details</h3>
+            <p>Detailed description of Project 1.</p>
+            <button onclick="closeModal('modal1')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
 
-                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
-                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
-                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
-                        </div>
-                    </div>
+    <!--Another project-->
+    <div id="modal1" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg w-1/2">
+            <h3 class="text-2xl font-semibold mb-4">Project 1 Details</h3>
+            <p>Detailed description of Project 1.</p>
+            <button onclick="closeModal('modal1')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+                     
 
-                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
-                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
-                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
-                        </div>
-                    </div>
                     
-                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
-                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
-                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
-                        </div>
-                    </div>
 
                     <div id="modal2" class="modal-overlay">
                         <div class="modal-content">
@@ -361,6 +338,24 @@
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
         }
+
+        // JavaScript for Mobile Menu Toggle
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // JavaScript for Modal Functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+
+
     </script>
 </body>
 </html>

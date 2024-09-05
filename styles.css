@@ -1,3 +1,54 @@
+.modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+        }
+
+        /* Transition effects for the project section */
+        .project-section {
+            transition: background-color 0.3s ease;
+        }
+
+        .project-section:hover {
+            background-color: #f0f9ff; /* Light blue background on hover */
+        }
+
+        /* Card hover effects */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.05); /* Zoom effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .project-card:hover .project-title {
+            color: #1d4ed8; /* Blue color on hover */
+        }
+        .project-card:hover .project-description {
+            color: #4b5563; /* Darker gray color on hover */
+        }
+        .project-card:hover .project-button {
+            background-color: #2563eb; /* Darker blue on hover */
+        }
+     
+
+    
 /* Basic reset */
 body, h1, h2, p {
   margin: 0;
