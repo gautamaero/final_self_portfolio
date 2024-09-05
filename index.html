@@ -61,24 +61,21 @@
         .error-message {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: #f87171;
             color: white;
             padding: 1rem;
             text-align: center;
             z-index: 100;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 400px; /* Adjust as needed */
         }
-
-        
-
-
-
-
     </style>
 </head>
-
 <body class="bg-gray-100" id="body">
     <nav class="bg-blue-600 p-4">
         <div class="container mx-auto flex justify-between items-center">
@@ -175,17 +172,15 @@
         </section>
     </main>
 
-    <!-- Color Picker -->
-    <div class="fixed bottom-0 right-0 m-4 p-4 bg-white rounded-lg shadow-lg">
-        <h2 class="text-lg font-semibold mb-2">Change Background Color</h2>
-        <div class="flex space-x-2">
-            <button class="w-8 h-8 rounded-full" style="background-color:#FFDAB7;" onclick="changeBackgroundColor('#FFDAB7')"></button>
-            <button class="w-8 h-8 rounded-full" style="background-color:#FFE5B4;" onclick="changeBackgroundColor('#FFE5B4')"></button>
-            <button class="w-8 h-8 rounded-full" style="background-color:#21ace8;" onclick="changeBackgroundColor('#21ace8')"></button>
-            <button class="w-8 h-8 rounded-full" style="background-color:#3EAF91;" onclick="changeBackgroundColor('#3EAF91')"></button>
-            <button class="w-8 h-8 rounded-full" style="background-color:#808080;" onclick="changeBackgroundColor('#808080')"></button>
+    <!-- Modals for Projects -->
+    <div id="modal1" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4">Project 1 Details</h2>
+            <p>More information about Project 1.</p>
+            <button onclick="closeModal('modal1')" class="bg-blue-600 text-white px-4 py-2 rounded mt-4">Close</button>
         </div>
     </div>
+    <!-- Additional modals can be added here -->
 
     <!-- Error Message -->
     <div id="error-message" class="error-message">Content not present on webpage</div>
