@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Navbar with Search</title>
+    <title>Responsive Navbar with Slider</title>
+    <script src="scrip.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles if needed */
-        
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -86,6 +86,76 @@
         .section-padding {
             padding-top: 4rem; /* Adjust as needed to match navbar height */
         }
+
+        /* Slider styling */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.8);
+            transition: background-color 0.3s;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .dots {
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
     </style>
 </head>
 <body class="bg-gray-100" id="body">
@@ -100,7 +170,7 @@
             <!-- Desktop Navbar Items and Search -->
             <div class="hidden md:flex items-center space-x-4 flex-grow">
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Home</a>
-                <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">About</a>
+                <a href="#about" class="text-white hover:bg-blue-700 px-3 py-2 rounded">About</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Education</a>
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Work-Exp</a>
                 <a href="#projects" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Project</a>
@@ -132,27 +202,68 @@
         <!-- Mobile Menu and Search -->
         <div id="menu" class="md:hidden bg-blue-700 mt-2 space-y-2 hidden">
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Home</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">About</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Education</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Work-Exp</a>
+            <a href="#about" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">About</a>
+            <a href="#eudcation" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Education</a>
+            <a href="#Work-Exp" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Work-Exp</a>
             <a href="#projects" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Project</a>
             <a href="#skills" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Skills</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Enrichment</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">POR</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Contacts</a>
+            <a href="#Enrichment" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Enrichment</a>
+            <a href="#POR" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">POR</a>
+            <a href="#Contacts" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Contacts</a>
             <!-- Mobile Search Bar -->
-            <div class="px-4 py-2">
-                <input type="text" id="search-input-mobile" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <div class="relative">
+                <input type="text" id="search-input-mobile" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <button id="search-button-mobile" class="absolute inset-y-0 right-0 px-3 py-2 text-gray-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a7 7 0 011.3 13.8l5.7 5.7a1 1 0 001.4-1.4l-5.7-5.7A7 7 0 0111 4z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Projects Section -->
-    <main class="container mx-auto py-8">
+    <main>
+        <!-- About Section -->
+        <section id="about" class="section-padding py-12">
+            <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">About Me</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac lorem nec massa congue pharetra.</p>
+                    <p>Etiam ac metus at orci condimentum dapibus. Fusce cursus diam vel ligula tempor, in viverra urna cursus. Praesent volutpat facilisis arcu at fermentum.</p>
+                </div>
+                <div class="md:w-1/2 md:pl-10">
+                    <div class="slider">
+                        <!-- Slider Images -->
+                        <div class="slides">
+                            <div class="slide">
+                                <img src="https://i.imgur.com/tCTo3Rt.jpeg" alt="Photo 1">
+                            </div>
+                            <div class="slide">
+                                <img src="https://i.imgur.com/jbR56tk.jpeg" alt="Photo 2">
+                            </div>
+                            <div class="slide">
+                                <img src="https://i.imgur.com/mbjkPoE.jpeg" alt="Photo 3">
+                            </div>
+                        </div>
+                        <!-- Navigation Arrows -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <!-- Dots -->
+                        <div class="dots mt-4">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
         <section id="projects" class="section-padding py-12">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-6">Projects</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-4">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Project Card -->
                     <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card" onclick="openModal('modal1')">
                         <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
@@ -197,6 +308,18 @@
     <!-- Error Message -->
     <div id="error-message" class="error-message">Content not present on webpage</div>
 
+    <!-- Color Picker -->
+    <div class="fixed bottom-0 right-0 m-4 p-4 bg-white rounded-lg shadow-lg">
+        <h2 class="text-lg font-semibold mb-2">Change Background Color</h2>
+        <div class="flex space-x-2">
+            <button class="w-8 h-8 rounded-full" style="background-color:#0A1828;" onclick="changeBackgroundColor('#0A1828')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#B2B5E0;" onclick="changeBackgroundColor('#B2B5E0')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#21ace8;" onclick="changeBackgroundColor('#21ace8')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#01257D;" onclick="changeBackgroundColor('#01257D')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#00FFFF;" onclick="changeBackgroundColor('#00FFFF')"></button>
+        </div>
+    </div>
+
     <script>
         // JavaScript to toggle the menu visibility on mobile
         document.getElementById('menu-button').addEventListener('click', function () {
@@ -207,6 +330,35 @@
         // JavaScript to change background color
         function changeBackgroundColor(hexColor) {
             document.getElementById('body').style.backgroundColor = hexColor;
+            document.querySelector('.navbar').style.backgroundColor = hexColor;
+        }
+
+        // JavaScript for sliders
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
         }
 
         // JavaScript to bring interactive elements to project sections
@@ -229,36 +381,18 @@
         // JavaScript for search functionality
         function search() {
             const searchInput = document.getElementById('search-input').value.toLowerCase();
-            const sections = ['projects', 'skills']; // Add other section ids here
-            let found = false;
-
-            for (let section of sections) {
-                if (searchInput === section) {
-                    document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
-                    found = true;
-                    break;
+            const projectTitles = document.querySelectorAll('.project-title');
+            projectTitles.forEach(title => {
+                if (title.textContent.toLowerCase().includes(searchInput)) {
+                    title.closest('.project-card').style.display = 'block';
+                } else {
+                    title.closest('.project-card').style.display = 'none';
                 }
-            }
-
-            if (!found) {
-                document.getElementById('error-message').style.display = 'block';
-                setTimeout(() => document.getElementById('error-message').style.display = 'none', 3000);
-            }
+            });
         }
 
-        // Event listeners for search
         document.getElementById('search-button').addEventListener('click', search);
-        document.getElementById('search-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                search();
-            }
-        });
-
-        document.getElementById('search-input-mobile').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                search();
-            }
-        });
+        document.getElementById('search-input').addEventListener('input', search);
     </script>
 </body>
 </html>
