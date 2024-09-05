@@ -7,8 +7,65 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles if needed */
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+        }
+
+        /* Transition effects for the project section */
+        .project-section {
+            transition: background-color 0.3s ease;
+        }
+
+        .project-section:hover {
+            background-color: #f0f9ff; /* Light blue background on hover */
+        }
+
+        /* Card hover effects */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.05); /* Zoom effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .project-card:hover .project-title {
+            color: #1d4ed8; /* Blue color on hover */
+        }
+        .project-card:hover .project-description {
+            color: #4b5563; /* Darker gray color on hover */
+        }
+        .project-card:hover .project-button {
+            background-color: #2563eb; /* Darker blue on hover */
+        }
+     
+
+    
+
+
+
     </style>
 </head>
+
+
 <body class="bg-gray-100" id="body">
     <nav class="bg-blue-600 p-4">
         <div class="container mx-auto flex justify-between items-center">
@@ -53,8 +110,12 @@
         <div id="menu" class="md:hidden bg-blue-700 mt-2 space-y-2 hidden">
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Home</a>
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">About</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Services</a>
-            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Contact</a>
+            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Education</a>
+            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Work-Exp</a>
+            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Project</a>
+            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Enrichment</a>
+            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">POR</a>
+            <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Contacts</a>
             <!-- Mobile Search Bar -->
             <div class="px-4 py-2">
                 <input type="text" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-blue-400">
@@ -62,17 +123,215 @@
         </div>
     </nav>
 
+    <!-- Projects Section -->
+    <main class="container mx-auto py-8">
+        <section id="projects" class="py-12">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-6">Projects</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Project Card -->
+                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card" onclick="openModal('modal1')">
+                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
+                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button">View Details</button>
+                        </div>
+                    </div>
+                     <!-- Repeat similar blocks for other projects -->
+                     <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
+                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
+                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
+                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
+                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
+                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
+                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
+                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
+                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="relative bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden project-card">
+                        <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2 project-title">Project 1</h3>
+                            <p class="text-gray-600 mb-4 project-description">A brief description of Project 1.</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded project-button" onclick="showModal('project2')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div id="modal2" class="modal-overlay">
+                        <div class="modal-content">
+                            <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-700 hover:text-gray-900">&times;</button>
+                            <h2 class="text-2xl font-bold mb-4">Project 2</h2>
+                            <img src="https://via.placeholder.com/600" alt="Project 2" class="w-full h-60 object-cover mb-4">
+                            <p class="text-gray-700 mb-4">A more detailed description of Project 2, showcasing its features and impact.</p>
+                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Learn More</a>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8">
+        <section id="skills" class="py-12">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-4">Skills</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Skill Items -->
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://th.bing.com/th/id/OIP.PY9TO3r57CyH9FlnQWxlegHaGY?w=207&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="HTML" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">HTML</h3>
+                        <p class="text-gray-600">Creating structured content</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/275559/images/6637674/tailwind.JPG" alt="Tailwind CSS" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Tailwind CSS</h3>
+                        <p class="text-gray-600">Styling web pages</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://th.bing.com/th/id/OIP.O-2nGBEBr2FM6BySwSI95QHaDR?w=347&h=154&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Colab" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Colab</h3>
+                        <p class="text-gray-600">Cloud version of Jupyter Notebook</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/VJmeyAU.jpeg" alt="C++" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">C++</h3>
+                        <p class="text-gray-600">Programming language</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://th.bing.com/th/id/OIP.zyhjIjnbbgK8CbzKa_U2DwAAAA?w=171&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="MATLAB" class="w-16 h-16 mb-2">
+                        <h3 class="text-lg font-semibold mb-2">MATLAB</h3>
+                        <p class="text-gray-600">Matrix computation</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://th.bing.com/th/id/OIP.kEBfEhqGuorKJsgg_6UBvAHaDt?w=323&h=175&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Plotly" class="w-20 h-20 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Plotly</h3>
+                        <p class="text-gray-600">Interactive & customized visualizations</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://live.staticflickr.com/65535/48057247952_f9e106cb4a_b.jpg" alt="JavaScript" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">JavaScript</h3>
+                        <p class="text-gray-600">ML library</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-200 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://th.bing.com/th/id/OIP.fqZ9-PPqcG_cm0k3JfoINQHaEK?w=312&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="GitHub" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">GitHub</h3>
+                        <p class="text-gray-600">Hosting code repositories</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://miro.medium.com/max/592/0*zKRz1UgqpOZ4bvuA" alt="NLTK" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">NLTK</h3>
+                        <p class="text-gray-600">Natural language processing</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://www.thetechaudit.com/wp-content/uploads/2021/02/AWS-Cloud.png" alt="AWS" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">AWS</h3>
+                        <p class="text-gray-600">Cloud services and solutions</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000rgoDsUAI" alt="Tableau" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Tableau</h3>
+                        <p class="text-gray-600">Data visualization</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/uJxAqGP.png" alt="Docker" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Docker</h3>
+                        <p class="text-gray-600">Containerization</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/nsMeUky.png" alt="Hugging Face" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Hugging Face</h3>
+                        <p class="text-gray-600">NLP</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/VGSezMa.png" alt="Scipy" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Scipy</h3>
+                        <p class="text-gray-600">Scientific computing</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/LpLx1RB.png" alt="Kubernetes" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Kubernetes</h3>
+                        <p class="text-gray-600">Container orchestration</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/904PZr7.png" alt="MLflow" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">MLflow</h3>
+                        <p class="text-gray-600">MLOps</p>
+                    </div>
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/yYBHAF3.png" alt="OpenMT" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">OpenMT</h3>
+                        <p class="text-gray-600">Neural Machine Translation</p>
+                    </div>
+
+                    <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                        <img src="https://i.imgur.com/k3cwz69.jpeg" alt="Apache" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                        <h3 class="text-lg font-semibold mb-2">Spark</h3>
+                        <p class="text-gray-600">Big Data</p>
+                    </div>
+                    <a href="https://hadoop.apache.org/" target="_blank" class="block">
+                        <div class="p-4 bg-white shadow-md hover:bg-blue-300 transition duration-300 rounded-lg flex flex-col items-center">
+                            <img src="https://i.imgur.com/cnMnFD8.png" alt="Apache" class="w-16 h-16 mb-2" decoding="async" data-nimg="fill" loading="lazy">
+                            <h3 class="text-lg font-semibold mb-2">Hadoop</h3>
+                            <p class="text-gray-600">Processing and storing large-scale data</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Add more skill elements here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+
+
     <!-- Color Picker -->
     <div class="fixed bottom-0 right-0 m-4 p-4 bg-white rounded-lg shadow-lg">
         <h2 class="text-lg font-semibold mb-2">Change Background Color</h2>
         <div class="flex space-x-2">
-            <button class="w-8 h-8 rounded-full" style="background-color:#454084;" onclick="changeBackgroundColor('#454084')"></button>
-            <button class="w-8 h-8 rounded-full" style="background-color:#007492;" onclick="changeBackgroundColor('#007492')"></button>
-            <button class="w-8 h-8 rounded-full" style="background-color:#B12884;" onclick="changeBackgroundColor('#B12884')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#FFDAB9;" onclick="changeBackgroundColor('#FFDAB9')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#FFE5B4;" onclick="changeBackgroundColor('#007492')"></button>
+            <button class="w-8 h-8 rounded-full" style="background-color:#4dbbea;" onclick="changeBackgroundColor('#4dbbea')"></button>
             <button class="w-8 h-8 rounded-full" style="background-color:#3EAF91;" onclick="changeBackgroundColor('#3EAF91')"></button>
             <button class="w-8 h-8 rounded-full" style="background-color:#808080;" onclick="changeBackgroundColor('#808080')"></button>
         </div>
     </div>
+
+
+
 
     <script>
         // JavaScript to toggle the menu visibility on mobile
@@ -84,6 +343,23 @@
         // JavaScript to change background color
         function changeBackgroundColor(hexColor) {
             document.getElementById('body').style.backgroundColor = hexColor;
+        }
+
+        // JavaScript to bring interactive elements to project sections
+        function showModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
         }
     </script>
 </body>
