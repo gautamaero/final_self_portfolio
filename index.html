@@ -57,19 +57,30 @@
             background-color: #2563eb; /* Darker blue on hover */
         }
 
-        /* Scroll margin for sections */
-        #projects {
-            scroll-margin-top: 4rem; /* Adjust this value to match your navbar height */
+        /* Error message styles */
+        .error-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #f87171;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            z-index: 100;
         }
 
-        #skills {
-            scroll-margin-top: 4rem; /* Adjust this value to match your navbar height */
-        }
+        
+
+
+
+
     </style>
 </head>
 
 <body class="bg-gray-100" id="body">
-    <nav class="bg-blue-600 p-4 fixed top-0 left-0 w-full z-50">
+    <nav class="bg-blue-600 p-4">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Brand Logo -->
             <a href="https://www.minds.iitb.ac.in/" target="_blank" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -90,8 +101,8 @@
                 <a href="#" class="text-white hover:bg-blue-700 px-3 py-2 rounded">Contacts</a>
                 <!-- Search Bar -->
                 <div class="relative flex-grow max-w-xs ml-4">
-                    <input type="text" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <button class="absolute inset-y-0 right-0 px-3 py-2 text-gray-600">
+                    <input type="text" id="search-input" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <button id="search-button" class="absolute inset-y-0 right-0 px-3 py-2 text-gray-600">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a7 7 0 011.3 13.8l5.7 5.7a1 1 0 001.4-1.4l-5.7-5.7A7 7 0 0111 4z"></path>
                         </svg>
@@ -122,7 +133,7 @@
             <a href="#" class="block text-white hover:bg-blue-800 px-3 py-2 rounded">Contacts</a>
             <!-- Mobile Search Bar -->
             <div class="px-4 py-2">
-                <input type="text" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <input type="text" id="search-input-mobile" placeholder="Search..." class="bg-white text-gray-800 px-3 py-2 rounded-lg shadow-md w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
         </div>
     </nav>
@@ -142,6 +153,7 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded project-button">View Details</button>
                         </div>
                     </div>
+                    <!-- Additional project cards can be added here -->
                 </div>
             </div>
         </section>
@@ -175,6 +187,9 @@
         </div>
     </div>
 
+    <!-- Error Message -->
+    <div id="error-message" class="error-message">Content not present on webpage</div>
+
     <script>
         // JavaScript to toggle the menu visibility on mobile
         document.getElementById('menu-button').addEventListener('click', function () {
@@ -203,6 +218,40 @@
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
         }
+
+        // JavaScript for search functionality
+        function search() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const sections = ['projects', 'skills']; // Add other section ids here
+            let found = false;
+
+            for (let section of sections) {
+                if (searchInput === section) {
+                    document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                document.getElementById('error-message').style.display = 'block';
+                setTimeout(() => document.getElementById('error-message').style.display = 'none', 3000);
+            }
+        }
+
+        // Event listeners for search
+        document.getElementById('search-button').addEventListener('click', search);
+        document.getElementById('search-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        });
+
+        document.getElementById('search-input-mobile').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        });
     </script>
 </body>
 </html>
